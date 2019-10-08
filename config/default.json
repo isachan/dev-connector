@@ -1,5 +1,7 @@
 {
   // "mongoURI": "mongodb+srv://isa:isa@mern-5g5am.mongodb.net/admin?retryWrites=true&w=majority",
   "mongoURI": "mongodb+srv://isa:isa@mern-5g5am.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "bbf3570276291d10876c",
+  "githubSecret": "6cbf6d9b5d1b434ab0f2c31dbb4b163209c5e364"
 }
