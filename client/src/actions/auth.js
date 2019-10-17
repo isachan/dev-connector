@@ -9,14 +9,13 @@ import {
 import setAuthToken from '../utils/setAuthToken';
 
 // Load User
-
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   try {
-    const res = await axios.get('./api/auth');
+    const res = await axios.get('/api/auth');
 
     dispatch({
       type: USER_LOADED,
@@ -46,6 +45,8 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
 

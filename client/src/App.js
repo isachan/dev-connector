@@ -18,7 +18,7 @@ if (localStorage.token) {
 
 const App = () => {
   useEffect(() => {
-    store.dispatch(loadUser);
+    store.dispatch(loadUser());
   }, []); //its likka component.didMount (do once only)
 
   return (
@@ -26,7 +26,7 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path='/' component={Landing} />.
+          <Route exact path='/' component={Landing} />
           <section className='container'>
             <Alert />
             <Switch>
