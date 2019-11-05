@@ -2,6 +2,7 @@
 const express = require('express');
 
 const connectDB = require('./config/db');
+const path = require('path');
 //2. initiallise app variable
 const app = express();
 
@@ -14,13 +15,22 @@ app.use(express.json({ extended: false }));
 //5. single end-point, just to test out
 //get request to /
 //callback with req, res, to send data to the browser
-app.get('/', (req, res) => res.send('API Running'));
+// app.get('/', (req, res) => res.send('API Running'));
 
 // Define Route
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static(`client/build`));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'cient', 'build', 'index.html'));
+  });
+}
 
 //4. will look for env called port, so when deployed to heroku, will find this, if cannot find, go to default 5000
 const PORT = process.env.PORT || 5000;
